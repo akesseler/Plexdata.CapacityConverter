@@ -542,6 +542,7 @@ namespace Plexdata.CapacityConverter.Tests.Formatters
             CapacityFormatter formatter = new CapacityFormatter();
 
             Debug.WriteLine("Auto-format, auto-unit-selection, zero decimal digits.");
+            Debug.WriteLine(String.Format(formatter, "{0}", 0));
             Debug.WriteLine(String.Format(formatter, "{0}", 123));
             Debug.WriteLine(String.Format(formatter, "{0}", 1234));
             Debug.WriteLine(String.Format(formatter, "{0}", 12345));
@@ -560,6 +561,7 @@ namespace Plexdata.CapacityConverter.Tests.Formatters
             Debug.WriteLine(String.Format(formatter, "{0}", 123456789012345678));
 
             Debug.WriteLine("Auto-format, auto-unit-selection, three decimal digits.");
+            Debug.WriteLine(String.Format(formatter, "{0:3}", 0));
             Debug.WriteLine(String.Format(formatter, "{0:3}", 123));
             Debug.WriteLine(String.Format(formatter, "{0:3}", 1234));
             Debug.WriteLine(String.Format(formatter, "{0:3}", 12345));

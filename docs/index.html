@@ -1,36 +1,166 @@
-<p align="center">
-  <a href="https://github.com/akesseler/Plexdata.CapacityConverter/blob/master/LICENSE.md" alt="license">
-    <img src="https://img.shields.io/github/license/akesseler/Plexdata.CapacityConverter.svg" />
-  </a>
-  <a href="https://github.com/akesseler/Plexdata.CapacityConverter/releases/latest" alt="latest">
-    <img src="https://img.shields.io/github/release/akesseler/Plexdata.CapacityConverter.svg" />
-  </a>
-  <a href="https://github.com/akesseler/Plexdata.CapacityConverter/archive/master.zip" alt="master">
-    <img src="https://img.shields.io/github/languages/code-size/akesseler/Plexdata.CapacityConverter.svg" />
-  </a>
-  <a href="https://github.com/akesseler/Plexdata.CapacityConverter/wiki" alt="wiki">
-    <img src="https://img.shields.io/badge/wiki-docs-orange.svg" />
-  </a>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Plexdata Capacity Converter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+    font-family: "Calibri", sans-serif;
+}
+.navbar {
+    height: 100%;
+    width: 165px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #262626;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+.navbar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 1.6em;
+    color: #818181;
+    display: block;
+}
+.navbar a:hover {
+    color: #F1F1F1;
+}
+.content {
+    margin-left: 165px;
+    font-size: 1.4em;
+    padding: 10px 50px;
+}
+code {
+  font-family: "Consolas", monospace;
+}
+pre {
+    padding: 20px;
+    font-size: 0.7em;
+    background-color: #FCFCFC;
+    border: 1px solid #C4C4C4;
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+}
+th {
+    background-color: #EDEDED;
+    color: #636363;
+}
+table, th, td {
+    border-top: 1px solid #C4C4C4;
+    border-bottom: 1px solid #C4C4C4;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+tbody tr:nth-child(odd){
+    background-color: #FCFCFC;
+}
+</style>
+</head>
+<body>
+<div class="navbar">
+  <a href="#overview">Overview</a>
+  <a href="#licensing">Licensing</a>
+  <a href="#installation">Installation</a>
+  <a href="#examples">Examples</a>
+  <a href="#limitation">Limitation</a>
+</div>
+<div class="content">
+  
+<header><center><h1>Plexdata Capacity Converter</h1></center></header> 
+
+<h2 id="overview">Overview</h2>
+
+<p>
+The <i>Plexdata Capacity Converter</i> represents a library that provides classes as 
+well as interfaces to be used to convert numbers into their capacity representation.
 </p>
 
-## Plexdata Capacity Converter
+<h2 id="licensing">Licensing</h2>
 
-The _Plexdata Capacity Converter_ represents a library that provides classes as well as interfaces to be used to convert numbers into their capacity representation.
+<p>
+The software has been published under the terms of
+</p>
 
-The software has been published under the terms of _MIT License_.
+<h3>MIT License</h3>
 
-See the documentation under [https://github.com/akesseler/Plexdata.CapacityConverter/wiki](https://github.com/akesseler/Plexdata.CapacityConverter/wiki) for an overview.
+<p>
+Copyright &copy; 2019 <a target="_blank" href="http://www.plexdata.de/">plexdata.de</a>
+</p>
+<p>
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
+associated documentation files (the "Software"), to deal in the Software without restriction, including 
+without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or 
+sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject 
+to the following conditions:
+</p>
+<p>
+The above copyright notice and this permission notice shall be included in all copies or substantial 
+portions of the Software.
+</p>
+<p>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
+TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+IN THE SOFTWARE.
+</p>
 
-In section _Examples_ please find some code snippets of recommended usage of this library.
+<h2 id="installation">Installation</h2>
 
-### Examples
+<p>
+The binary files of the <i>Plexdata Capacity Converter</i> are provided as <i>NuGet</i> package and can be obtained from 
+<a target="_blank" href="https://www.nuget.org/packages/Plexdata.CapacityConverter/">https://www.nuget.org/packages/Plexdata.CapacityConverter</a>. 
+How to install this <i>NuGet</i> package manually is explained there.
+</p>
+<p>
+Using the <i>Plexdata Capacity Converter</i> together with <i>Visual Studio</i>.
+</p>
+<ul>
+<li>
+Create a new <i>.NET Framework</i>, <i>.NET Standard</i> or <i>.NET Core</i> project.
+</li>
+<li>
+Open menu <i>Tools &rarr; NuGet Package Manager</i> and choose command <i>Manage NuGet Packages for Solution&hellip;</i>.
+<ul>
+<li>
+Alternatively, simply right&#8209;click the project in the <i>Solution Explorer</i> and choose command <i>Manage NuGet Packages&hellip;</i>.
+</li>
+</ul>
+</li>
+<li>
+Switch to <i>Browse</i> page and in the search box just type <code>plexdata.capacityconverter</code>.
+</li>
+<li>
+From the shown list select <i>Plexdata.CapacityConverter</i> and click button <code>[Install]</code> at the right.
+</li>
+<li>
+Confirm the dialog box and that&rsquo;s it.
+</li>
+</ul>
+<p>
+Additionally, all releases can be downloaded from <i>GitHub</i>. Please visit page 
+<a target="_blank" href="https://github.com/akesseler/Plexdata.CapacityConverter/releases">Plexdata Capacity Converter</a> 
+to find all available versions.
+</p>
 
-The examples in this section demonstrate how to use the _Capacity Formatter_ with different features.
+<h2 id="examples">Examples</h2>
 
-**Auto-format, auto-unit-selection and zero decimal digits**
+<p>
+This section wants to show some examples of how to use the <i>Plexdata Capacity Converter</i>. 
+</p>
 
-```
-String.Format(new CapacityFormatter(), "{0}", 0); // result: "0 Bytes"
+<h3>Auto-format, auto-unit-selection and zero decimal digits</h3>
+
+<pre><code>String.Format(new CapacityFormatter(), "{0}", 0); // result: "0 Bytes"
 String.Format(new CapacityFormatter(), "{0}", 1234); // result: "1 KB"
 String.Format(new CapacityFormatter(), "{0}", 12345); // result: "12 KB"
 String.Format(new CapacityFormatter(), "{0}", 123456); // result: "121 KB"
@@ -45,13 +175,11 @@ String.Format(new CapacityFormatter(), "{0}", 12345678901234); // result: "11 TB
 String.Format(new CapacityFormatter(), "{0}", 123456789012345); // result: "112 TB"
 String.Format(new CapacityFormatter(), "{0}", 1234567890123456); // result: "1 PB"
 String.Format(new CapacityFormatter(), "{0}", 12345678901234567); // result: "11 PB"
-String.Format(new CapacityFormatter(), "{0}", 123456789012345678); // result: "110 PB"
-```
+String.Format(new CapacityFormatter(), "{0}", 123456789012345678); // result: "110 PB"</code></pre>
 
-**Auto-format, auto-unit-selection, three decimal digits**
+<h3>Auto-format, auto-unit-selection, three decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:3}", 0); // result: "0 Bytes"
+<pre><code>String.Format(new CapacityFormatter(), "{0:3}", 0); // result: "0 Bytes"
 String.Format(new CapacityFormatter(), "{0:3}", 123); // result: "123 Bytes"
 String.Format(new CapacityFormatter(), "{0:3}", 1234); // result: "1.205 KB"
 String.Format(new CapacityFormatter(), "{0:3}", 12345); // result: "12.056 KB"
@@ -67,13 +195,11 @@ String.Format(new CapacityFormatter(), "{0:3}", 12345678901234); // result: "11.
 String.Format(new CapacityFormatter(), "{0:3}", 123456789012345); // result: "112.283 TB"
 String.Format(new CapacityFormatter(), "{0:3}", 1234567890123456); // result: "1.097 PB"
 String.Format(new CapacityFormatter(), "{0:3}", 12345678901234567); // result: "10.965 PB"
-String.Format(new CapacityFormatter(), "{0:3}", 123456789012345678); // result: "109.652 PB"
-```
+String.Format(new CapacityFormatter(), "{0:3}", 123456789012345678); // result: "109.652 PB"</code></pre>
 
-**Auto-format, unit one preferred, zero decimal digits**
+<h3>Auto-format, unit one preferred, zero decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:one}", 0); // result: "0 Bytes"
+<pre><code>String.Format(new CapacityFormatter(), "{0:one}", 0); // result: "0 Bytes"
 String.Format(new CapacityFormatter(), "{0:one}", 123); // result: "123 Bytes"
 String.Format(new CapacityFormatter(), "{0:one}", 1234); // result: "1 KB"
 String.Format(new CapacityFormatter(), "{0:one}", 12345); // result: "12 KB"
@@ -89,13 +215,11 @@ String.Format(new CapacityFormatter(), "{0:one}", 12345678901234); // result: "1
 String.Format(new CapacityFormatter(), "{0:one}", 123456789012345); // result: "112 TB"
 String.Format(new CapacityFormatter(), "{0:one}", 1234567890123456); // result: "1 PB"
 String.Format(new CapacityFormatter(), "{0:one}", 12345678901234567); // result: "11 PB"
-String.Format(new CapacityFormatter(), "{0:one}", 123456789012345678); // result: "110 PB"
-```
+String.Format(new CapacityFormatter(), "{0:one}", 123456789012345678); // result: "110 PB"</code></pre>
 
-**Auto-format, unit one preferred, six decimal digits**
+<h3>Auto-format, unit one preferred, six decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:one6}", 0); // result: "0 Bytes"
+<pre><code>String.Format(new CapacityFormatter(), "{0:one6}", 0); // result: "0 Bytes"
 String.Format(new CapacityFormatter(), "{0:one6}", 123); // result: "123 Bytes"
 String.Format(new CapacityFormatter(), "{0:one6}", 1234); // result: "1.205078 KB"
 String.Format(new CapacityFormatter(), "{0:one6}", 12345); // result: "12.055664 KB"
@@ -111,13 +235,11 @@ String.Format(new CapacityFormatter(), "{0:one6}", 12345678901234); // result: "
 String.Format(new CapacityFormatter(), "{0:one6}", 123456789012345); // result: "112.283296 TB"
 String.Format(new CapacityFormatter(), "{0:one6}", 1234567890123456); // result: "1.096517 PB"
 String.Format(new CapacityFormatter(), "{0:one6}", 12345678901234567); // result: "10.965166 PB"
-String.Format(new CapacityFormatter(), "{0:one6}", 123456789012345678); // result: "109.651656 PB"
-```
+String.Format(new CapacityFormatter(), "{0:one6}", 123456789012345678); // result: "109.651656 PB"</code></pre>
 
-**Auto-format, unit two preferred, zero decimal digits**
+<h3>Auto-format, unit two preferred, zero decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:two}", 0); // result: "0 BiB"
+<pre><code>String.Format(new CapacityFormatter(), "{0:two}", 0); // result: "0 BiB"
 String.Format(new CapacityFormatter(), "{0:two}", 123); // result: "123 BiB"
 String.Format(new CapacityFormatter(), "{0:two}", 1234); // result: "1 KiB"
 String.Format(new CapacityFormatter(), "{0:two}", 12345); // result: "12 KiB"
@@ -133,13 +255,11 @@ String.Format(new CapacityFormatter(), "{0:two}", 12345678901234); // result: "1
 String.Format(new CapacityFormatter(), "{0:two}", 123456789012345); // result: "112 TiB"
 String.Format(new CapacityFormatter(), "{0:two}", 1234567890123456); // result: "1 PiB"
 String.Format(new CapacityFormatter(), "{0:two}", 12345678901234567); // result: "11 PiB"
-String.Format(new CapacityFormatter(), "{0:two}", 123456789012345678); // result: "110 PiB"
-```
+String.Format(new CapacityFormatter(), "{0:two}", 123456789012345678); // result: "110 PiB"</code></pre>
 
-**Auto-format, unit two preferred, six decimal digits**
+<h3>Auto-format, unit two preferred, six decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:two6}", 0); // result: "0 BiB"
+<pre><code>String.Format(new CapacityFormatter(), "{0:two6}", 0); // result: "0 BiB"
 String.Format(new CapacityFormatter(), "{0:two6}", 123); // result: "123 BiB"
 String.Format(new CapacityFormatter(), "{0:two6}", 1234); // result: "1.205078 KiB"
 String.Format(new CapacityFormatter(), "{0:two6}", 12345); // result: "12.055664 KiB"
@@ -155,62 +275,57 @@ String.Format(new CapacityFormatter(), "{0:two6}", 12345678901234); // result: "
 String.Format(new CapacityFormatter(), "{0:two6}", 123456789012345); // result: "112.283296 TiB"
 String.Format(new CapacityFormatter(), "{0:two6}", 1234567890123456); // result: "1.096517 PiB"
 String.Format(new CapacityFormatter(), "{0:two6}", 12345678901234567); // result: "10.965166 PiB"
-String.Format(new CapacityFormatter(), "{0:two6}", 123456789012345678); // result: "109.651656 PiB"
-```
+String.Format(new CapacityFormatter(), "{0:two6}", 123456789012345678); // result: "109.651656 PiB"</code></pre>
 
-**Unit-one-driven format, zero decimal digits**
+<h3>Unit-one-driven format, zero decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:bytes}", 123456789012345678); // result: "123,456,789,012,345,678 Bytes"
+<pre><code>String.Format(new CapacityFormatter(), "{0:bytes}", 123456789012345678); // result: "123,456,789,012,345,678 Bytes"
 String.Format(new CapacityFormatter(), "{0:kb}", 123456789012345678); // result: "120,563,270,519,869 KB"
 String.Format(new CapacityFormatter(), "{0:mb}", 123456789012345678); // result: "117,737,568,867 MB"
 String.Format(new CapacityFormatter(), "{0:gb}", 123456789012345678); // result: "114,978,095 GB"
 String.Format(new CapacityFormatter(), "{0:tb}", 123456789012345678); // result: "112,283 TB"
-String.Format(new CapacityFormatter(), "{0:pb}", 123456789012345678); // result: "110 PB"
-```
+String.Format(new CapacityFormatter(), "{0:pb}", 123456789012345678); // result: "110 PB"</code></pre>
 
-**Unit-one-driven format, four decimal digits**
+<h3>Unit-one-driven format, four decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:bytes4}", 123456789012345678); // result: "123,456,789,012,345,678 Bytes"
+<pre><code>String.Format(new CapacityFormatter(), "{0:bytes4}", 123456789012345678); // result: "123,456,789,012,345,678 Bytes"
 String.Format(new CapacityFormatter(), "{0:kb4}", 123456789012345678); // result: "120,563,270,519,868.8262 KB"
 String.Format(new CapacityFormatter(), "{0:mb4}", 123456789012345678); // result: "117,737,568,867.0594 MB"
 String.Format(new CapacityFormatter(), "{0:gb4}", 123456789012345678); // result: "114,978,094.5967 GB"
 String.Format(new CapacityFormatter(), "{0:tb4}", 123456789012345678); // result: "112,283.2955 TB"
-String.Format(new CapacityFormatter(), "{0:pb4}", 123456789012345678); // result: "109.6517 PB"
-```
+String.Format(new CapacityFormatter(), "{0:pb4}", 123456789012345678); // result: "109.6517 PB"</code></pre>
 
-**Unit-two-driven format, zero decimal digits**
+<h3>Unit-two-driven format, zero decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:bib}", 123456789012345678); // result: "123,456,789,012,345,678 BiB"
+<pre><code>String.Format(new CapacityFormatter(), "{0:bib}", 123456789012345678); // result: "123,456,789,012,345,678 BiB"
 String.Format(new CapacityFormatter(), "{0:kib}", 123456789012345678); // result: "120,563,270,519,869 KiB"
 String.Format(new CapacityFormatter(), "{0:mib}", 123456789012345678); // result: "117,737,568,867 MiB"
 String.Format(new CapacityFormatter(), "{0:gib}", 123456789012345678); // result: "114,978,095 GiB"
 String.Format(new CapacityFormatter(), "{0:tib}", 123456789012345678); // result: "112,283 TiB"
-String.Format(new CapacityFormatter(), "{0:pib}", 123456789012345678); // result: "110 PiB"
-```
+String.Format(new CapacityFormatter(), "{0:pib}", 123456789012345678); // result: "110 PiB"</code></pre>
 
-**Unit-two-driven format, four decimal digits**
+<h3>Unit-two-driven format, four decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:bib4}", 123456789012345678); // result: "123,456,789,012,345,678 BiB"
+<pre><code>String.Format(new CapacityFormatter(), "{0:bib4}", 123456789012345678); // result: "123,456,789,012,345,678 BiB"
 String.Format(new CapacityFormatter(), "{0:kib4}", 123456789012345678); // result: "120,563,270,519,868.8262 KiB"
 String.Format(new CapacityFormatter(), "{0:mib4}", 123456789012345678); // result: "117,737,568,867.0594 MiB"
 String.Format(new CapacityFormatter(), "{0:gib4}", 123456789012345678); // result: "114,978,094.5967 GiB"
 String.Format(new CapacityFormatter(), "{0:tib4}", 123456789012345678); // result: "112,283.2955 TiB"
-String.Format(new CapacityFormatter(), "{0:pib4}", 123456789012345678); // result: "109.6517 PiB"
-```
+String.Format(new CapacityFormatter(), "{0:pib4}", 123456789012345678); // result: "109.6517 PiB"</code></pre>
 
-**Custom-unit-format, zero decimal digits**
+<h3>Custom-unit-format, zero decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:my-size}", 123456789012345678); // result: "123,456,789,012,345,678 my-size"
-```
+<pre><code>String.Format(new CapacityFormatter(), "{0:my-size}", 123456789012345678); // result: "123,456,789,012,345,678 my-size"</code></pre>
 
-**Custom-unit-format, six decimal digits**
+<h3>Custom-unit-format, six decimal digits</h3>
 
-```
-String.Format(new CapacityFormatter(), "{0:my-size6}", 123456789012345678); // result: "123,456,789,012,345,678 my-size"
-```
+<pre><code>String.Format(new CapacityFormatter(), "{0:my-size6}", 123456789012345678); // result: "123,456,789,012,345,678 my-size"</code></pre>
 
+<h2 id="limitation">Limitation</h2>
+
+<p>
+No limitations known at the moment.
+</p>
+</div>
+</body>
+</html>
