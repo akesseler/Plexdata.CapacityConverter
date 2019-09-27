@@ -19,7 +19,9 @@ The _Plexdata Capacity Converter_ represents a library that provides classes as 
 
 The software has been published under the terms of _MIT License_.
 
-See the documentation under [https://github.com/akesseler/Plexdata.CapacityConverter/wiki](https://github.com/akesseler/Plexdata.CapacityConverter/wiki) for an overview.
+See the documentation under [https://akesseler.github.io/Plexdata.CapacityConverter](https://akesseler.github.io/Plexdata.CapacityConverter) for an overview.
+
+For a complete class documentation see the Wiki under [https://github.com/akesseler/Plexdata.CapacityConverter/wiki](https://github.com/akesseler/Plexdata.CapacityConverter/wiki).
 
 In section _Examples_ please find some code snippets of recommended usage of this library.
 
