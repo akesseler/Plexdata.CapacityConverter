@@ -122,6 +122,14 @@ namespace Plexdata.CapacityConverter.Tests.Entities
             Assert.That(() => this.GetInstance().Format(150, "unit", false), Throws.Nothing);
             Assert.That(() => this.GetInstance().Format(150, 5, false), Throws.Nothing);
             Assert.That(() => this.GetInstance().Format(150, "unit", 5, false), Throws.Nothing);
+            Assert.That(() => this.GetInstance().Format(150, (CultureInfo)null), Throws.Nothing);
+            Assert.That(() => this.GetInstance().Format(150, "unit", (CultureInfo)null), Throws.Nothing);
+            Assert.That(() => this.GetInstance().Format(150, 5, (CultureInfo)null), Throws.Nothing);
+            Assert.That(() => this.GetInstance().Format(150, "unit", 5, (CultureInfo)null), Throws.Nothing);
+            Assert.That(() => this.GetInstance().Format(150, false, (CultureInfo)null), Throws.Nothing);
+            Assert.That(() => this.GetInstance().Format(150, "unit", false, (CultureInfo)null), Throws.Nothing);
+            Assert.That(() => this.GetInstance().Format(150, 5, false, (CultureInfo)null), Throws.Nothing);
+            Assert.That(() => this.GetInstance().Format(150, "unit", 5, false, (CultureInfo)null), Throws.Nothing);
             Assert.That(() => this.GetInstance().Format(150, this.GetCulture()), Throws.Nothing);
             Assert.That(() => this.GetInstance().Format(150, "unit", this.GetCulture()), Throws.Nothing);
             Assert.That(() => this.GetInstance().Format(150, 5, this.GetCulture()), Throws.Nothing);
@@ -147,9 +155,9 @@ namespace Plexdata.CapacityConverter.Tests.Entities
         }
 
         [Test]
-        [TestCase("150", null, "150 Unit1")]
-        [TestCase("150", "", "150 Unit1")]
-        [TestCase("150", " ", "150 Unit1")]
+        [TestCase("150", null, "150\u00A0Unit1")]
+        [TestCase("150", "", "150\u00A0Unit1")]
+        [TestCase("150", " ", "150\u00A0Unit1")]
         public void Format_UnitInvalid_ResultWithUnitOne(String value, String unit, String expected)
         {
             String actual = this.GetInstance().Format(Convert.ToDecimal(value), unit, 0, false, this.GetFormatter());
@@ -157,15 +165,15 @@ namespace Plexdata.CapacityConverter.Tests.Entities
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        [TestCase("150", " Other ", 0, "150 Other")]
-        [TestCase("150", " other ", 0, "150 other")]
-        [TestCase("150", " OTHER ", 0, "150 OTHER")]
-        [TestCase("150", " Other ", 2, "150.00 Other")]
-        [TestCase("150", " other ", 2, "150.00 other")]
-        [TestCase("150", " OTHER ", 2, "150.00 OTHER")]
-        [TestCase("150", " Other ", 4, "150.0000 Other")]
-        [TestCase("150", " other ", 4, "150.0000 other")]
-        [TestCase("150", " OTHER ", 4, "150.0000 OTHER")]
+        [TestCase("150", " Other ", 0, "150\u00A0Other")]
+        [TestCase("150", " other ", 0, "150\u00A0other")]
+        [TestCase("150", " OTHER ", 0, "150\u00A0OTHER")]
+        [TestCase("150", " Other ", 2, "150.00\u00A0Other")]
+        [TestCase("150", " other ", 2, "150.00\u00A0other")]
+        [TestCase("150", " OTHER ", 2, "150.00\u00A0OTHER")]
+        [TestCase("150", " Other ", 4, "150.0000\u00A0Other")]
+        [TestCase("150", " other ", 4, "150.0000\u00A0other")]
+        [TestCase("150", " OTHER ", 4, "150.0000\u00A0OTHER")]
         public void Format_OtherUnitWithSpaces_ResultAsExpected(String value, String unit, Int32 decimals, String expected)
         {
             String actual = this.GetInstance().Format(Convert.ToDecimal(value), unit, decimals, false, this.GetFormatter());
@@ -174,60 +182,60 @@ namespace Plexdata.CapacityConverter.Tests.Entities
         }
 
         [Test]
-        [TestCase("150", "Unit1", 0, false, "150 Unit1")]
-        [TestCase("150", "unit1", 0, false, "150 Unit1")]
-        [TestCase("150", "UNIT1", 0, false, "150 Unit1")]
-        [TestCase("150", "Unit2", 0, false, "150 Unit2")]
-        [TestCase("150", "unit2", 0, false, "150 Unit2")]
-        [TestCase("150", "UNIT2", 0, false, "150 Unit2")]
-        [TestCase("150", "Other", 0, false, "150 Other")]
-        [TestCase("150", "other", 0, false, "150 other")]
-        [TestCase("150", "OTHER", 0, false, "150 OTHER")]
-        [TestCase("150", "Unit1", 2, false, "150.00 Unit1")]
-        [TestCase("150", "unit1", 2, false, "150.00 Unit1")]
-        [TestCase("150", "UNIT1", 2, false, "150.00 Unit1")]
-        [TestCase("150", "Unit2", 2, false, "150.00 Unit2")]
-        [TestCase("150", "unit2", 2, false, "150.00 Unit2")]
-        [TestCase("150", "UNIT2", 2, false, "150.00 Unit2")]
-        [TestCase("150", "Other", 2, false, "150.00 Other")]
-        [TestCase("150", "other", 2, false, "150.00 other")]
-        [TestCase("150", "OTHER", 2, false, "150.00 OTHER")]
-        [TestCase("150", "Unit1", 5, false, "150.00000 Unit1")]
-        [TestCase("150", "unit1", 5, false, "150.00000 Unit1")]
-        [TestCase("150", "UNIT1", 5, false, "150.00000 Unit1")]
-        [TestCase("150", "Unit2", 5, false, "150.00000 Unit2")]
-        [TestCase("150", "unit2", 5, false, "150.00000 Unit2")]
-        [TestCase("150", "UNIT2", 5, false, "150.00000 Unit2")]
-        [TestCase("150", "Other", 5, false, "150.00000 Other")]
-        [TestCase("150", "other", 5, false, "150.00000 other")]
-        [TestCase("150", "OTHER", 5, false, "150.00000 OTHER")]
-        [TestCase("150", "Unit1", 0, true, "4 Unit1")]
-        [TestCase("150", "unit1", 0, true, "4 Unit1")]
-        [TestCase("150", "UNIT1", 0, true, "4 Unit1")]
-        [TestCase("150", "Unit2", 0, true, "4 Unit2")]
-        [TestCase("150", "unit2", 0, true, "4 Unit2")]
-        [TestCase("150", "UNIT2", 0, true, "4 Unit2")]
-        [TestCase("150", "Other", 0, true, "4 Other")]
-        [TestCase("150", "other", 0, true, "4 other")]
-        [TestCase("150", "OTHER", 0, true, "4 OTHER")]
-        [TestCase("150", "Unit1", 2, true, "3.57 Unit1")]
-        [TestCase("150", "unit1", 2, true, "3.57 Unit1")]
-        [TestCase("150", "UNIT1", 2, true, "3.57 Unit1")]
-        [TestCase("150", "Unit2", 2, true, "3.57 Unit2")]
-        [TestCase("150", "unit2", 2, true, "3.57 Unit2")]
-        [TestCase("150", "UNIT2", 2, true, "3.57 Unit2")]
-        [TestCase("150", "Other", 2, true, "3.57 Other")]
-        [TestCase("150", "other", 2, true, "3.57 other")]
-        [TestCase("150", "OTHER", 2, true, "3.57 OTHER")]
-        [TestCase("150", "Unit1", 5, true, "3.57143 Unit1")]
-        [TestCase("150", "unit1", 5, true, "3.57143 Unit1")]
-        [TestCase("150", "UNIT1", 5, true, "3.57143 Unit1")]
-        [TestCase("150", "Unit2", 5, true, "3.57143 Unit2")]
-        [TestCase("150", "unit2", 5, true, "3.57143 Unit2")]
-        [TestCase("150", "UNIT2", 5, true, "3.57143 Unit2")]
-        [TestCase("150", "Other", 5, true, "3.57143 Other")]
-        [TestCase("150", "other", 5, true, "3.57143 other")]
-        [TestCase("150", "OTHER", 5, true, "3.57143 OTHER")]
+        [TestCase("150", "Unit1", 0, false, "150\u00A0Unit1")]
+        [TestCase("150", "unit1", 0, false, "150\u00A0Unit1")]
+        [TestCase("150", "UNIT1", 0, false, "150\u00A0Unit1")]
+        [TestCase("150", "Unit2", 0, false, "150\u00A0Unit2")]
+        [TestCase("150", "unit2", 0, false, "150\u00A0Unit2")]
+        [TestCase("150", "UNIT2", 0, false, "150\u00A0Unit2")]
+        [TestCase("150", "Other", 0, false, "150\u00A0Other")]
+        [TestCase("150", "other", 0, false, "150\u00A0other")]
+        [TestCase("150", "OTHER", 0, false, "150\u00A0OTHER")]
+        [TestCase("150", "Unit1", 2, false, "150.00\u00A0Unit1")]
+        [TestCase("150", "unit1", 2, false, "150.00\u00A0Unit1")]
+        [TestCase("150", "UNIT1", 2, false, "150.00\u00A0Unit1")]
+        [TestCase("150", "Unit2", 2, false, "150.00\u00A0Unit2")]
+        [TestCase("150", "unit2", 2, false, "150.00\u00A0Unit2")]
+        [TestCase("150", "UNIT2", 2, false, "150.00\u00A0Unit2")]
+        [TestCase("150", "Other", 2, false, "150.00\u00A0Other")]
+        [TestCase("150", "other", 2, false, "150.00\u00A0other")]
+        [TestCase("150", "OTHER", 2, false, "150.00\u00A0OTHER")]
+        [TestCase("150", "Unit1", 5, false, "150.00000\u00A0Unit1")]
+        [TestCase("150", "unit1", 5, false, "150.00000\u00A0Unit1")]
+        [TestCase("150", "UNIT1", 5, false, "150.00000\u00A0Unit1")]
+        [TestCase("150", "Unit2", 5, false, "150.00000\u00A0Unit2")]
+        [TestCase("150", "unit2", 5, false, "150.00000\u00A0Unit2")]
+        [TestCase("150", "UNIT2", 5, false, "150.00000\u00A0Unit2")]
+        [TestCase("150", "Other", 5, false, "150.00000\u00A0Other")]
+        [TestCase("150", "other", 5, false, "150.00000\u00A0other")]
+        [TestCase("150", "OTHER", 5, false, "150.00000\u00A0OTHER")]
+        [TestCase("150", "Unit1", 0, true, "4\u00A0Unit1")]
+        [TestCase("150", "unit1", 0, true, "4\u00A0Unit1")]
+        [TestCase("150", "UNIT1", 0, true, "4\u00A0Unit1")]
+        [TestCase("150", "Unit2", 0, true, "4\u00A0Unit2")]
+        [TestCase("150", "unit2", 0, true, "4\u00A0Unit2")]
+        [TestCase("150", "UNIT2", 0, true, "4\u00A0Unit2")]
+        [TestCase("150", "Other", 0, true, "4\u00A0Other")]
+        [TestCase("150", "other", 0, true, "4\u00A0other")]
+        [TestCase("150", "OTHER", 0, true, "4\u00A0OTHER")]
+        [TestCase("150", "Unit1", 2, true, "3.57\u00A0Unit1")]
+        [TestCase("150", "unit1", 2, true, "3.57\u00A0Unit1")]
+        [TestCase("150", "UNIT1", 2, true, "3.57\u00A0Unit1")]
+        [TestCase("150", "Unit2", 2, true, "3.57\u00A0Unit2")]
+        [TestCase("150", "unit2", 2, true, "3.57\u00A0Unit2")]
+        [TestCase("150", "UNIT2", 2, true, "3.57\u00A0Unit2")]
+        [TestCase("150", "Other", 2, true, "3.57\u00A0Other")]
+        [TestCase("150", "other", 2, true, "3.57\u00A0other")]
+        [TestCase("150", "OTHER", 2, true, "3.57\u00A0OTHER")]
+        [TestCase("150", "Unit1", 5, true, "3.57143\u00A0Unit1")]
+        [TestCase("150", "unit1", 5, true, "3.57143\u00A0Unit1")]
+        [TestCase("150", "UNIT1", 5, true, "3.57143\u00A0Unit1")]
+        [TestCase("150", "Unit2", 5, true, "3.57143\u00A0Unit2")]
+        [TestCase("150", "unit2", 5, true, "3.57143\u00A0Unit2")]
+        [TestCase("150", "UNIT2", 5, true, "3.57143\u00A0Unit2")]
+        [TestCase("150", "Other", 5, true, "3.57143\u00A0Other")]
+        [TestCase("150", "other", 5, true, "3.57143\u00A0other")]
+        [TestCase("150", "OTHER", 5, true, "3.57143\u00A0OTHER")]
         public void Format_ValueUnitDecimalsCalculateCombinations_ResultAsExpected(String value, String unit, Int32 decimals, Boolean calculate, String expected)
         {
             String actual = this.GetInstance().Format(Convert.ToDecimal(value), unit, decimals, calculate, this.GetFormatter());
@@ -237,7 +245,7 @@ namespace Plexdata.CapacityConverter.Tests.Entities
 
         private CultureInfo GetCulture()
         {
-            return CultureInfo.CurrentCulture;
+            return CultureInfo.CurrentUICulture;
         }
 
         private NumberFormatInfo GetFormatter()

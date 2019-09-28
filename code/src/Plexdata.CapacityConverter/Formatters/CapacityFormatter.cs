@@ -58,9 +58,25 @@ namespace Plexdata.Formatters
         /// Default constructor.
         /// </summary>
         /// <remarks>
-        /// The default constructor just initializes its properties.
+        /// The default constructor just initializes its properties with default values.
         /// </remarks>
         public CapacityFormatter()
+            : this(null)
+        {
+        }
+
+        /// <summary>
+        /// Parameterized constructor.
+        /// </summary>
+        /// <remarks>
+        /// The parameterized constructor initializes its properties. Keep in mind, current 
+        /// UI culture is used if parameter <paramref name="culture"/> is <c>null</c>.
+        /// </remarks>
+        /// <param name="culture">
+        /// The culture to be used or null if current UI culture is wanted.
+        /// </param>
+        /// <seealso cref="CapacityFormatter()"/>
+        public CapacityFormatter(CultureInfo culture)
             : base()
         {
             this.Supported = new List<Type>()
@@ -77,6 +93,8 @@ namespace Plexdata.Formatters
                 typeof(Double),
                 typeof(Decimal),
             };
+
+            this.Culture = culture;
         }
 
         #endregion
@@ -95,6 +113,18 @@ namespace Plexdata.Formatters
         /// The list of supported types.
         /// </value>
         public IEnumerable<Type> Supported { get; private set; }
+
+        /// <summary>
+        /// Gets the used culture.
+        /// </summary>
+        /// <remarks>
+        /// This getter returns the used culture. Keep in mind, this culture might be 
+        /// <c>null</c>. In such a case, current UI culture is used instead.
+        /// </remarks>
+        /// <value>
+        /// The used culture or <c>null</c>.
+        /// </value>
+        public CultureInfo Culture { get; private set; }
 
         #endregion
 
@@ -153,13 +183,13 @@ namespace Plexdata.Formatters
             {
                 if (value is IFormattable)
                 {
-                    return (value as IFormattable).ToString(format, provider ?? CultureInfo.CurrentUICulture);
+                    return (value as IFormattable).ToString(format, provider ?? this.GetCulture());
                 }
 
                 return value.ToString();
             }
 
-            return CapacityConverter.Convert(Convert.ToDecimal(value), this.GetUnit(format), this.GetDecimals(format));
+            return CapacityConverter.Convert(Convert.ToDecimal(value), this.GetUnit(format), this.GetDecimals(format), this.GetCulture());
         }
 
         #endregion
@@ -222,6 +252,22 @@ namespace Plexdata.Formatters
             }
 
             return 0;
+        }
+
+        /// <summary>
+        /// Determines the used culture.
+        /// </summary>
+        /// <remarks>
+        /// This method determines the culture to be used. Either this culture 
+        /// is set by the constructor or it is the current UI culture.
+        /// </remarks>
+        /// <returns>
+        /// The culture to be used.
+        /// </returns>
+        /// <seealso cref="Culture"/>
+        private CultureInfo GetCulture()
+        {
+            return this.Culture ?? CultureInfo.CurrentUICulture;
         }
 
         #endregion

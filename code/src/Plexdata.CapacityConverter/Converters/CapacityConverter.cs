@@ -25,6 +25,7 @@
 using Plexdata.Converters.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Plexdata.Converters
@@ -74,9 +75,9 @@ namespace Plexdata.Converters
         /// Gets the default capacity entity.
         /// </summary>
         /// <remarks>
-        /// This property returns the default capacity entity. This default capacity 
-        /// is intended to be as fallback. This fallback is actually the last entry 
-        /// all supported <see cref="Capacities"/>.
+        /// This property returns the default capacity entity. The default capacity is 
+        /// intended to be used as fallback. This fallback is actually the last entry 
+        /// of all supported <see cref="Capacities"/>.
         /// </remarks>
         /// <value>
         /// The default capacity used as fallback.
@@ -242,7 +243,39 @@ namespace Plexdata.Converters
         /// </returns>
         /// <seealso cref="Convert(Decimal)"/>
         /// <seealso cref="Convert(Decimal, String)"/>
+        /// <seealso cref="Convert(Decimal, String, Int32, CultureInfo)"/>
         public static String Convert(Decimal value, String unit, Int32 decimals)
+        {
+            return CapacityConverter.Convert(value, unit, decimals, null);
+        }
+
+        /// <summary>
+        /// Converts provided value into its string representation.
+        /// </summary>
+        /// <remarks>
+        /// This method converts provided value into its string representation 
+        /// by finding the best fitting capacity entity and using it to format 
+        /// provided value afterwards. 
+        /// </remarks>
+        /// <param name="value">
+        /// The value to be converted.
+        /// </param>
+        /// <param name="unit">
+        /// The unit to get a capacity entity for.
+        /// </param>
+        /// <param name="decimals">
+        /// The number of decimal digits used for calculation.
+        /// </param>
+        /// <param name="culture">
+        /// The culture to be used for conversion.
+        /// </param>
+        /// <returns>
+        /// The string representation of converted value.
+        /// </returns>
+        /// <seealso cref="Convert(Decimal)"/>
+        /// <seealso cref="Convert(Decimal, String)"/>
+        /// <seealso cref="Convert(Decimal, String, Int32)"/>
+        public static String Convert(Decimal value, String unit, Int32 decimals, CultureInfo culture)
         {
             if (!String.IsNullOrWhiteSpace(unit))
             {
@@ -250,25 +283,25 @@ namespace Plexdata.Converters
                 if (unit.Equals("one", StringComparison.InvariantCultureIgnoreCase))
                 {
                     CapacityEntity entity = CapacityConverter.Find(value);
-                    return entity.Format(value, entity.Unit1, decimals);
+                    return entity.Format(value, entity.Unit1, decimals, culture);
                 }
 
                 // Special case: Prefere unit two.
                 if (unit.Equals("two", StringComparison.InvariantCultureIgnoreCase))
                 {
                     CapacityEntity entity = CapacityConverter.Find(value);
-                    return entity.Format(value, entity.Unit2, decimals);
+                    return entity.Format(value, entity.Unit2, decimals, culture);
                 }
 
-                return CapacityConverter.Find(unit).Format(value, unit, decimals);
+                return CapacityConverter.Find(unit).Format(value, unit, decimals, culture);
             }
 
             if (decimals > 0)
             {
-                return CapacityConverter.Convert(value, decimals);
+                return CapacityConverter.Find(value).Format(value, decimals, culture);
             }
 
-            return CapacityConverter.Convert(value);
+            return CapacityConverter.Find(value).Format(value, culture);
         }
 
         #endregion

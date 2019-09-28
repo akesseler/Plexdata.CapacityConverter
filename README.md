@@ -11,6 +11,9 @@
   <a href="https://github.com/akesseler/Plexdata.CapacityConverter/wiki" alt="wiki">
     <img src="https://img.shields.io/badge/wiki-docs-orange.svg" />
   </a>
+  <a href="https://akesseler.github.io/Plexdata.CapacityConverter" alt="help">
+    <img src="https://img.shields.io/badge/help-docs-orange.svg" />
+  </a>
 </p>
 
 ## Plexdata Capacity Converter

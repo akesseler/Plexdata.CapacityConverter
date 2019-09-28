@@ -197,6 +197,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value)
         {
             return this.Format(value, this.GetUnit(), this.GetDecimals(), this.GetCalculate(), this.GetFormatter());
@@ -217,6 +218,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit)
         {
             return this.Format(value, unit, this.GetDecimals(), this.GetCalculate(), this.GetFormatter());
@@ -237,6 +239,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals)
         {
             return this.Format(value, this.GetUnit(), decimals, this.GetCalculate(), this.GetFormatter());
@@ -260,6 +263,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Int32 decimals)
         {
             return this.Format(value, this.GetUnit(unit), decimals, this.GetCalculate(), this.GetFormatter());
@@ -280,6 +284,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Boolean calculate)
         {
             return this.Format(value, this.GetUnit(), this.GetDecimals(), calculate, this.GetFormatter());
@@ -303,6 +308,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Boolean calculate)
         {
             return this.Format(value, unit, this.GetDecimals(), calculate, this.GetFormatter());
@@ -326,6 +332,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals, Boolean calculate)
         {
             return this.Format(value, this.GetUnit(), decimals, calculate, this.GetFormatter());
@@ -352,6 +359,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Int32 decimals, Boolean calculate)
         {
             return this.Format(value, unit, decimals, calculate, this.GetFormatter());
@@ -372,6 +380,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, CultureInfo culture)
         {
             return this.Format(value, this.GetUnit(), this.GetDecimals(), this.GetCalculate(), this.GetFormatter(culture));
@@ -395,6 +404,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, CultureInfo culture)
         {
             return this.Format(value, unit, this.GetDecimals(), this.GetCalculate(), this.GetFormatter(culture));
@@ -418,6 +428,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals, CultureInfo culture)
         {
             return this.Format(value, this.GetUnit(), decimals, this.GetCalculate(), this.GetFormatter(culture));
@@ -444,6 +455,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Int32 decimals, CultureInfo culture)
         {
             return this.Format(value, unit, decimals, this.GetCalculate(), this.GetFormatter(culture));
@@ -467,6 +479,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Boolean calculate, CultureInfo culture)
         {
             return this.Format(value, this.GetUnit(), this.GetDecimals(), calculate, this.GetFormatter(culture));
@@ -493,6 +506,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Boolean calculate, CultureInfo culture)
         {
             return this.Format(value, unit, this.GetDecimals(), calculate, this.GetFormatter(culture));
@@ -519,6 +533,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals, Boolean calculate, CultureInfo culture)
         {
             return this.Format(value, this.GetUnit(), decimals, calculate, this.GetFormatter(culture));
@@ -548,6 +563,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Int32 decimals, Boolean calculate, CultureInfo culture)
         {
             return this.Format(value, unit, decimals, calculate, this.GetFormatter(culture));
@@ -568,6 +584,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, NumberFormatInfo formatter)
         {
             return this.Format(value, this.GetUnit(), this.GetDecimals(), this.GetCalculate(), formatter);
@@ -591,6 +608,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, NumberFormatInfo formatter)
         {
             return this.Format(value, unit, this.GetDecimals(), this.GetCalculate(), formatter);
@@ -614,6 +632,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals, NumberFormatInfo formatter)
         {
             return this.Format(value, this.GetUnit(), decimals, this.GetCalculate(), formatter);
@@ -640,6 +659,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Int32 decimals, NumberFormatInfo formatter)
         {
             return this.Format(value, unit, decimals, this.GetCalculate(), formatter);
@@ -663,6 +683,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Boolean calculate, NumberFormatInfo formatter)
         {
             return this.Format(value, this.GetUnit(), this.GetDecimals(), calculate, formatter);
@@ -689,6 +710,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Boolean calculate, NumberFormatInfo formatter)
         {
             return this.Format(value, unit, this.GetDecimals(), calculate, formatter);
@@ -715,6 +737,7 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals, Boolean calculate, NumberFormatInfo formatter)
         {
             return this.Format(value, this.GetUnit(), decimals, calculate, formatter);
@@ -724,7 +747,9 @@ namespace Plexdata.Converters.Entities
         /// Formats provided value according to current settings.
         /// </summary>
         /// <remarks>
-        /// This method formats provided value according to current settings.
+        /// This method formats provided value according to current settings. Keep in 
+        /// mind, resulting number and unit are concatenated by the 'NO-BREAK SPACE' 
+        /// Unicode character (U+00A0).
         /// </remarks>
         /// <param name="value">
         /// The value to be formatted.
@@ -760,7 +785,8 @@ namespace Plexdata.Converters.Entities
 
             value = calculate ? this.Calculate(value, decimals) : value;
 
-            String format = $"{{0:N}} {this.GetUnit(unit)}";
+            // Concatenate number and unit by the 'NO-BREAK SPACE' Unicode character.
+            String format = $"{{0:N}}\u00A0{this.GetUnit(unit)}";
 
             return String.Format(formatter, format, value);
         }
@@ -888,7 +914,7 @@ namespace Plexdata.Converters.Entities
         /// </summary>
         /// <remarks>
         /// This method returns the default number formatter, which is based on 
-        /// default culture..
+        /// default culture.
         /// </remarks>
         /// <returns>
         /// The default number formatter.
