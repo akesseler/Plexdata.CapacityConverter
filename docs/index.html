@@ -390,30 +390,30 @@ String.Format(new CapacityFormatter(), "{0:pib4}", 123456789012345678); // resul
 
 <h3>Unit-two-driven format, four decimal digits, but no calculation</h3>
 
-<pre><code>String.Format(new CapacityFormatter(), "{0:!bib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 BiB"
-String.Format(new CapacityFormatter(), "{0:!kib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 KiB"
-String.Format(new CapacityFormatter(), "{0:!mib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 MiB"
-String.Format(new CapacityFormatter(), "{0:!gib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 GiB"
-String.Format(new CapacityFormatter(), "{0:!tib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 TiB"
-String.Format(new CapacityFormatter(), "{0:!pib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 PiB"</code></pre>
+<pre><code>String.Format(new CapacityFormatter(), "{0:!bib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 BiB"
+String.Format(new CapacityFormatter(), "{0:!kib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 KiB"
+String.Format(new CapacityFormatter(), "{0:!mib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 MiB"
+String.Format(new CapacityFormatter(), "{0:!gib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 GiB"
+String.Format(new CapacityFormatter(), "{0:!tib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 TiB"
+String.Format(new CapacityFormatter(), "{0:!pib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 PiB"</code></pre>
 
 <h3>Unit-two-driven format, four decimal digits, but interception</h3>
 
-<pre><code>String.Format(new CapacityFormatter(), "{0:bib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 BiB"
-String.Format(new CapacityFormatter(), "{0:kib~4}", 1152921504606846976m); // result: "1,125,899,906,842,624 KiB"
-String.Format(new CapacityFormatter(), "{0:mib~4}", 1152921504606846976m); // result: "1,099,511,627,776 MiB"
-String.Format(new CapacityFormatter(), "{0:gib~4}", 1152921504606846976m); // result: "1,073,741,824 GiB"
-String.Format(new CapacityFormatter(), "{0:tib~4}", 1152921504606846976m); // result: "1,048,576 TiB"
-String.Format(new CapacityFormatter(), "{0:pib~4}", 1152921504606846976m); // result: "1,024 PiB"</code></pre>
+<pre><code>String.Format(new CapacityFormatter(), "{0:bib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 BiB"
+String.Format(new CapacityFormatter(), "{0:kib~4}", 1152921504606846976m); // result: "1,125,899,906,842,624 KiB"
+String.Format(new CapacityFormatter(), "{0:mib~4}", 1152921504606846976m); // result: "1,099,511,627,776 MiB"
+String.Format(new CapacityFormatter(), "{0:gib~4}", 1152921504606846976m); // result: "1,073,741,824 GiB"
+String.Format(new CapacityFormatter(), "{0:tib~4}", 1152921504606846976m); // result: "1,048,576 TiB"
+String.Format(new CapacityFormatter(), "{0:pib~4}", 1152921504606846976m); // result: "1,024 PiB"</code></pre>
 
 <h3>Unit-two-driven format, four decimal digits, with interception, but no calculation</h3>
 
-<pre><code>String.Format(new CapacityFormatter(), "{0:!bib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 BiB"
-String.Format(new CapacityFormatter(), "{0:!kib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 KiB"
-String.Format(new CapacityFormatter(), "{0:!mib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 MiB"
-String.Format(new CapacityFormatter(), "{0:!gib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 GiB"
-String.Format(new CapacityFormatter(), "{0:!tib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 TiB"
-String.Format(new CapacityFormatter(), "{0:!pib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 PiB"</code></pre>
+<pre><code>String.Format(new CapacityFormatter(), "{0:!bib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 BiB"
+String.Format(new CapacityFormatter(), "{0:!kib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 KiB"
+String.Format(new CapacityFormatter(), "{0:!mib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 MiB"
+String.Format(new CapacityFormatter(), "{0:!gib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 GiB"
+String.Format(new CapacityFormatter(), "{0:!tib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 TiB"
+String.Format(new CapacityFormatter(), "{0:!pib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 PiB"</code></pre>
 
 <h2 id="limitation">Limitation</h2>
 
