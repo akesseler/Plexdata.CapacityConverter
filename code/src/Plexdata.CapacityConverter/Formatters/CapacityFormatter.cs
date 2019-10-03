@@ -23,6 +23,7 @@
  */
 
 using Plexdata.Converters;
+using Plexdata.Converters.Constants;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -189,7 +190,13 @@ namespace Plexdata.Formatters
                 return value.ToString();
             }
 
-            return CapacityConverter.Convert(Convert.ToDecimal(value), this.GetUnit(format), this.GetDecimals(format), this.GetCulture());
+            return CapacityConverter.Convert(
+                Convert.ToDecimal(value),
+                this.GetUnit(format),
+                this.GetDecimals(format),
+                this.GetCalculate(format),
+                this.GetIntercept(format),
+                this.GetCulture());
         }
 
         #endregion
@@ -201,7 +208,8 @@ namespace Plexdata.Formatters
         /// </summary>
         /// <remarks>
         /// This method extracts the unit name from provided <paramref name="format"/> 
-        /// string by stripping out any digits.
+        /// string by stripping out any digits. This actually has the effect that something 
+        /// like "1m2b" would become "mb".
         /// </remarks>
         /// <param name="format">
         /// The format string to extract the unit name from.
@@ -216,7 +224,8 @@ namespace Plexdata.Formatters
                 return String.Empty;
             }
 
-            return Regex.Replace(format, "[0-9]", String.Empty);
+            // NOTE: Something like "un!it15" would end in "unit", which actually should cause a format exception.
+            return Regex.Replace(format, "[^a-zA-Z]", String.Empty);
         }
 
         /// <summary>
@@ -224,7 +233,8 @@ namespace Plexdata.Formatters
         /// </summary>
         /// <remarks>
         /// This method extracts the decimal digits from provided <paramref name="format"/> 
-        /// string by stripping out all non-digit-characters.
+        /// string by stripping out all non-digit-characters. This actually has the effect 
+        /// that something like "1m2b" would become "12".
         /// </remarks>
         /// <param name="format">
         /// The format string to extract the decimal digits from.
@@ -236,22 +246,71 @@ namespace Plexdata.Formatters
         {
             if (String.IsNullOrWhiteSpace(format))
             {
-                return 0;
+                return Defaults.Decimals;
             }
 
+            // NOTE: Something like "unit1!5" would end in "15", which actually should cause a format exception.
             String value = Regex.Replace(format, "[^0-9]", String.Empty);
-
-            if (String.IsNullOrWhiteSpace(value))
-            {
-                return 0;
-            }
 
             if (Int32.TryParse(value, out Int32 result))
             {
                 return result;
             }
 
-            return 0;
+            return Defaults.Decimals;
+        }
+
+        /// <summary>
+        /// Gets current calculate mode from provided format string.
+        /// </summary>
+        /// <remarks>
+        /// This method gets current calculate mode from provided <paramref name="format"/> 
+        /// string. The calculate mode is disabled if provided <paramref name="format"/> 
+        /// string includes character "exclamation mark (!)". Otherwise calculate mode is 
+        /// enabled.
+        /// </remarks>
+        /// <param name="format">
+        /// The format string to get calculate mode from.
+        /// </param>
+        /// <returns>
+        /// True is returned if calculate mode is not disabled and false otherwise.
+        /// </returns>
+        /// <seealso cref="Defaults.Calculate"/>
+        private Boolean GetCalculate(String format)
+        {
+            if (String.IsNullOrWhiteSpace(format))
+            {
+                return Defaults.Calculate;
+            }
+
+            // Calculate is true if '!' is not included.
+            return format.IndexOf("!", 0, StringComparison.InvariantCultureIgnoreCase) < 0;
+        }
+
+        /// <summary>
+        /// Gets current intercept mode from provided format string.
+        /// </summary>
+        /// <remarks>
+        /// This method gets current intercept mode from provided <paramref name="format"/> 
+        /// string. The intercept mode is enabled if provided <paramref name="format"/> 
+        /// string includes character "swung dash (~)". Otherwise intercept mode is disabled.
+        /// </remarks>
+        /// <param name="format">
+        /// The format string to get intercept mode from.
+        /// </param>
+        /// <returns>
+        /// True is returned if intercept mode is enabled and false otherwise.
+        /// </returns>
+        /// <seealso cref="Defaults.Intercept"/>
+        private Boolean GetIntercept(String format)
+        {
+            if (String.IsNullOrWhiteSpace(format))
+            {
+                return Defaults.Intercept;
+            }
+
+            // Intercept is true if '~' is included.
+            return format.IndexOf("~", 0, StringComparison.InvariantCultureIgnoreCase) >= 0;
         }
 
         /// <summary>
@@ -267,7 +326,7 @@ namespace Plexdata.Formatters
         /// <seealso cref="Culture"/>
         private CultureInfo GetCulture()
         {
-            return this.Culture ?? CultureInfo.CurrentUICulture;
+            return this.Culture ?? Defaults.Culture;
         }
 
         #endregion

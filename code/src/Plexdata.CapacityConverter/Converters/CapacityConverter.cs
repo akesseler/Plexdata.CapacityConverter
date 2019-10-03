@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+using Plexdata.Converters.Constants;
 using Plexdata.Converters.Entities;
 using System;
 using System.Collections.Generic;
@@ -170,6 +171,7 @@ namespace Plexdata.Converters
         /// <returns>
         /// The string representation of converted value.
         /// </returns>
+        /// <seealso cref="Find(Decimal)"/>
         public static String Convert(Decimal value)
         {
             return CapacityConverter.Find(value).Format(value);
@@ -192,6 +194,7 @@ namespace Plexdata.Converters
         /// <returns>
         /// The string representation of converted value.
         /// </returns>
+        /// <seealso cref="Find(Decimal)"/>
         public static String Convert(Decimal value, Int32 decimals)
         {
             return CapacityConverter.Find(value).Format(value, decimals);
@@ -215,10 +218,10 @@ namespace Plexdata.Converters
         /// <returns>
         /// The string representation of converted value.
         /// </returns>
-        /// <seealso cref="Convert(Decimal, String, Int32)"/>
+        /// <seealso cref="Convert(Decimal, String, Int32, Boolean, Boolean, CultureInfo)"/>
         public static String Convert(Decimal value, String unit)
         {
-            return CapacityConverter.Convert(value, unit, 2);
+            return CapacityConverter.Convert(value, unit, 2, Defaults.Calculate, Defaults.Intercept, null);
         }
 
         /// <summary>
@@ -241,12 +244,10 @@ namespace Plexdata.Converters
         /// <returns>
         /// The string representation of converted value.
         /// </returns>
-        /// <seealso cref="Convert(Decimal)"/>
-        /// <seealso cref="Convert(Decimal, String)"/>
-        /// <seealso cref="Convert(Decimal, String, Int32, CultureInfo)"/>
+        /// <seealso cref="Convert(Decimal, String, Int32, Boolean, Boolean, CultureInfo)"/>
         public static String Convert(Decimal value, String unit, Int32 decimals)
         {
-            return CapacityConverter.Convert(value, unit, decimals, null);
+            return CapacityConverter.Convert(value, unit, decimals, Defaults.Calculate, Defaults.Intercept, null);
         }
 
         /// <summary>
@@ -272,10 +273,79 @@ namespace Plexdata.Converters
         /// <returns>
         /// The string representation of converted value.
         /// </returns>
-        /// <seealso cref="Convert(Decimal)"/>
-        /// <seealso cref="Convert(Decimal, String)"/>
-        /// <seealso cref="Convert(Decimal, String, Int32)"/>
+        /// <seealso cref="Convert(Decimal, String, Int32, Boolean, Boolean, CultureInfo)"/>
         public static String Convert(Decimal value, String unit, Int32 decimals, CultureInfo culture)
+        {
+            return CapacityConverter.Convert(value, unit, decimals, Defaults.Calculate, Defaults.Intercept, culture);
+        }
+
+        /// <summary>
+        /// Converts provided value into its string representation.
+        /// </summary>
+        /// <remarks>
+        /// This method converts provided value into its string representation 
+        /// by finding the best fitting capacity entity and using it to format 
+        /// provided value afterwards. 
+        /// </remarks>
+        /// <param name="value">
+        /// The value to be converted.
+        /// </param>
+        /// <param name="unit">
+        /// The unit to get a capacity entity for.
+        /// </param>
+        /// <param name="decimals">
+        /// The number of decimal digits used for calculation.
+        /// </param>
+        /// <param name="calculate">
+        /// True to force a result calculation, otherwise false.
+        /// </param>
+        /// <param name="culture">
+        /// The culture to be used for conversion.
+        /// </param>
+        /// <returns>
+        /// The string representation of converted value.
+        /// </returns>
+        /// <seealso cref="Convert(Decimal, String, Int32, Boolean, Boolean, CultureInfo)"/>
+        public static String Convert(Decimal value, String unit, Int32 decimals, Boolean calculate, CultureInfo culture)
+        {
+            return CapacityConverter.Convert(value, unit, decimals, calculate, Defaults.Intercept, culture);
+        }
+
+        /// <summary>
+        /// Converts provided value into its string representation.
+        /// </summary>
+        /// <remarks>
+        /// This method converts provided value into its string representation 
+        /// by finding the best fitting capacity entity and using it to format 
+        /// provided value afterwards. 
+        /// </remarks>
+        /// <param name="value">
+        /// The value to be converted.
+        /// </param>
+        /// <param name="unit">
+        /// The unit to get a capacity entity for.
+        /// </param>
+        /// <param name="decimals">
+        /// The number of decimal digits used for calculation.
+        /// </param>
+        /// <param name="calculate">
+        /// True to force a result calculation, otherwise false.
+        /// </param>
+        /// <param name="intercept">
+        /// True to force intercept mode, otherwise false.
+        /// </param>
+        /// <param name="culture">
+        /// The culture to be used for conversion.
+        /// </param>
+        /// <returns>
+        /// The string representation of converted value.
+        /// </returns>
+        /// <seealso cref="Find(String)"/>
+        /// <seealso cref="Find(Decimal)"/>
+        /// <seealso cref="CapacityEntity.Format(Decimal, Boolean, Boolean, CultureInfo)"/>
+        /// <seealso cref="CapacityEntity.Format(Decimal, Int32, Boolean, Boolean, CultureInfo)"/>
+        /// <seealso cref="CapacityEntity.Format(Decimal, String, Int32, Boolean, Boolean, CultureInfo)"/>
+        public static String Convert(Decimal value, String unit, Int32 decimals, Boolean calculate, Boolean intercept, CultureInfo culture)
         {
             if (!String.IsNullOrWhiteSpace(unit))
             {
@@ -283,25 +353,25 @@ namespace Plexdata.Converters
                 if (unit.Equals("one", StringComparison.InvariantCultureIgnoreCase))
                 {
                     CapacityEntity entity = CapacityConverter.Find(value);
-                    return entity.Format(value, entity.Unit1, decimals, culture);
+                    return entity.Format(value, entity.Unit1, decimals, calculate, intercept, culture);
                 }
 
                 // Special case: Prefere unit two.
                 if (unit.Equals("two", StringComparison.InvariantCultureIgnoreCase))
                 {
                     CapacityEntity entity = CapacityConverter.Find(value);
-                    return entity.Format(value, entity.Unit2, decimals, culture);
+                    return entity.Format(value, entity.Unit2, decimals, calculate, intercept, culture);
                 }
 
-                return CapacityConverter.Find(unit).Format(value, unit, decimals, culture);
+                return CapacityConverter.Find(unit).Format(value, unit, decimals, calculate, intercept, culture);
             }
 
             if (decimals > 0)
             {
-                return CapacityConverter.Find(value).Format(value, decimals, culture);
+                return CapacityConverter.Find(value).Format(value, decimals, calculate, intercept, culture);
             }
 
-            return CapacityConverter.Find(value).Format(value, culture);
+            return CapacityConverter.Find(value).Format(value, calculate, intercept, culture);
         }
 
         #endregion

@@ -563,6 +563,33 @@ namespace Plexdata.CapacityConverter.Tests.Formatters
         }
 
         [Test]
+        [TestCase("{0:mib!5}", 123456789012345678, "123,456,789,012,345,678.00000\u00A0MiB")]
+        [TestCase("{0:mib5}", 123456789012345678, "117,737,568,867.05940\u00A0MiB")]
+        [TestCase("{0:!mib!!!!}", 123456789012345678, "123,456,789,012,345,678\u00A0MiB")]
+        [TestCase("{0:mib}", 123456789012345678, "117,737,568,867\u00A0MiB")]
+        [TestCase("{0:1!5}", 123456789012345678, "123,456,789,012,345,678.000000000000000\u00A0PB")]
+        public void Format_CalculateDependentFormatting_ResultAsExpected(String format, Object value, String expected)
+        {
+            String actual = String.Format(this.GetInstance(), format, value);
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        [TestCase("{0:MB~5}", 1099511627776, "1,048,576\u00A0MB")]
+        [TestCase("{0:MB5}", 1099511627776, "1,048,576.00000\u00A0MB")]
+        [TestCase("{0:MB~5}", 1099511628288, "1,048,576.00049\u00A0MB")]
+        [TestCase("{0:MB5}", 1099511628288, "1,048,576.00049\u00A0MB")]
+        [TestCase("{0:MB~5}", 3298534883328, "3,145,728\u00A0MB")]
+        [TestCase("{0:MB5}", 3298534883328, "3,145,728.00000\u00A0MB")]
+        [TestCase("{0:MB~5}", 3298534889197, "3,145,728.00560\u00A0MB")]
+        [TestCase("{0:MB5}", 3298534889197, "3,145,728.00560\u00A0MB")]
+        public void Format_InterceptDependentFormatting_ResultAsExpected(String format, Object value, String expected)
+        {
+            String actual = String.Format(this.GetInstance(), format, value);
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
         public void Examples_RecommendedUsage_ResultsInOutput()
         {
             CapacityFormatter formatter = this.GetInstance();
@@ -681,6 +708,12 @@ namespace Plexdata.CapacityConverter.Tests.Formatters
             Debug.WriteLine(String.Format(formatter, "{0:two6}", 12345678901234567));
             Debug.WriteLine(String.Format(formatter, "{0:two6}", 123456789012345678));
 
+            Debug.WriteLine("Auto-format, unit one preferred, four decimal digits, mixed interception.");
+            Debug.WriteLine(String.Format(formatter, "{0:One4}", 1073741824m));
+            Debug.WriteLine(String.Format(formatter, "{0:One~4}", 1073741824m));
+            Debug.WriteLine(String.Format(formatter, "{0:One4}", 2213102268m));
+            Debug.WriteLine(String.Format(formatter, "{0:One~4}", 2213102268m));
+
             Debug.WriteLine("Unit-one-driven format, zero decimal digits.");
             Debug.WriteLine(String.Format(formatter, "{0:bytes}", 123456789012345678));
             Debug.WriteLine(String.Format(formatter, "{0:kb}", 123456789012345678));
@@ -718,6 +751,30 @@ namespace Plexdata.CapacityConverter.Tests.Formatters
 
             Debug.WriteLine("Custom-unit-format, six decimal digits.");
             Debug.WriteLine(String.Format(formatter, "{0:my-size6}", 123456789012345678));
+
+            Debug.WriteLine("Unit-two-driven format, four decimal digits, but no calculation.");
+            Debug.WriteLine(String.Format(formatter, "{0:!bib4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:!kib4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:!mib4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:!gib4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:!tib4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:!pib4}", 1152921504606846976m));
+
+            Debug.WriteLine("Unit-two-driven format, four decimal digits, but interception.");
+            Debug.WriteLine(String.Format(formatter, "{0:bib~4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:kib~4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:mib~4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:gib~4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:tib~4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:pib~4}", 1152921504606846976m));
+
+            Debug.WriteLine("Unit-two-driven format, four decimal digits, with interception, but no calculation.");
+            Debug.WriteLine(String.Format(formatter, "{0:!bib~4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:!kib~4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:!mib~4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:!gib~4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:!tib~4}", 1152921504606846976m));
+            Debug.WriteLine(String.Format(formatter, "{0:!pib~4}", 1152921504606846976m));
 
             Assert.That(true);
         }

@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+using Plexdata.Converters.Constants;
 using System;
 using System.Globalization;
 
@@ -197,10 +198,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value)
         {
-            return this.Format(value, this.GetUnit(), this.GetDecimals(), this.GetCalculate(), this.GetFormatter());
+            return this.Format(value, this.GetUnit(), this.GetDecimals(), this.GetCalculate(), this.GetIntercept(), this.GetFormatter());
         }
 
         /// <summary>
@@ -218,10 +219,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit)
         {
-            return this.Format(value, unit, this.GetDecimals(), this.GetCalculate(), this.GetFormatter());
+            return this.Format(value, unit, this.GetDecimals(), this.GetCalculate(), this.GetIntercept(), this.GetFormatter());
         }
 
         /// <summary>
@@ -239,10 +240,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals)
         {
-            return this.Format(value, this.GetUnit(), decimals, this.GetCalculate(), this.GetFormatter());
+            return this.Format(value, this.GetUnit(), decimals, this.GetCalculate(), this.GetIntercept(), this.GetFormatter());
         }
 
         /// <summary>
@@ -263,10 +264,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Int32 decimals)
         {
-            return this.Format(value, this.GetUnit(unit), decimals, this.GetCalculate(), this.GetFormatter());
+            return this.Format(value, this.GetUnit(unit), decimals, this.GetCalculate(), this.GetIntercept(), this.GetFormatter());
         }
 
         /// <summary>
@@ -284,10 +285,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Boolean calculate)
         {
-            return this.Format(value, this.GetUnit(), this.GetDecimals(), calculate, this.GetFormatter());
+            return this.Format(value, this.GetUnit(), this.GetDecimals(), calculate, this.GetIntercept(), this.GetFormatter());
         }
 
         /// <summary>
@@ -308,10 +309,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Boolean calculate)
         {
-            return this.Format(value, unit, this.GetDecimals(), calculate, this.GetFormatter());
+            return this.Format(value, unit, this.GetDecimals(), calculate, this.GetIntercept(), this.GetFormatter());
         }
 
         /// <summary>
@@ -332,10 +333,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals, Boolean calculate)
         {
-            return this.Format(value, this.GetUnit(), decimals, calculate, this.GetFormatter());
+            return this.Format(value, this.GetUnit(), decimals, calculate, this.GetIntercept(), this.GetFormatter());
         }
 
         /// <summary>
@@ -359,10 +360,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Int32 decimals, Boolean calculate)
         {
-            return this.Format(value, unit, decimals, calculate, this.GetFormatter());
+            return this.Format(value, unit, decimals, calculate, this.GetIntercept(), this.GetFormatter());
         }
 
         /// <summary>
@@ -380,10 +381,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, CultureInfo culture)
         {
-            return this.Format(value, this.GetUnit(), this.GetDecimals(), this.GetCalculate(), this.GetFormatter(culture));
+            return this.Format(value, this.GetUnit(), this.GetDecimals(), this.GetCalculate(), this.GetIntercept(), this.GetFormatter(culture));
         }
 
         /// <summary>
@@ -404,10 +405,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, CultureInfo culture)
         {
-            return this.Format(value, unit, this.GetDecimals(), this.GetCalculate(), this.GetFormatter(culture));
+            return this.Format(value, unit, this.GetDecimals(), this.GetCalculate(), this.GetIntercept(), this.GetFormatter(culture));
         }
 
         /// <summary>
@@ -428,10 +429,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals, CultureInfo culture)
         {
-            return this.Format(value, this.GetUnit(), decimals, this.GetCalculate(), this.GetFormatter(culture));
+            return this.Format(value, this.GetUnit(), decimals, this.GetCalculate(), this.GetIntercept(), this.GetFormatter(culture));
         }
 
         /// <summary>
@@ -455,10 +456,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Int32 decimals, CultureInfo culture)
         {
-            return this.Format(value, unit, decimals, this.GetCalculate(), this.GetFormatter(culture));
+            return this.Format(value, unit, decimals, this.GetCalculate(), this.GetIntercept(), this.GetFormatter(culture));
         }
 
         /// <summary>
@@ -479,10 +480,37 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Boolean calculate, CultureInfo culture)
         {
-            return this.Format(value, this.GetUnit(), this.GetDecimals(), calculate, this.GetFormatter(culture));
+            return this.Format(value, this.GetUnit(), this.GetDecimals(), calculate, this.GetIntercept(), this.GetFormatter(culture));
+        }
+
+        /// <summary>
+        /// Formats provided value according to current settings.
+        /// </summary>
+        /// <remarks>
+        /// This method formats provided value according to current settings.
+        /// </remarks>
+        /// <param name="value">
+        /// The value to be formatted.
+        /// </param>
+        /// <param name="calculate">
+        /// True to force a result calculation, otherwise false.
+        /// </param>
+        /// <param name="intercept">
+        /// True to force intercept mode, otherwise false.
+        /// </param>
+        /// <param name="culture">
+        /// The culture to be used for calculation.
+        /// </param>
+        /// <returns>
+        /// The string representation of formatted value.
+        /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
+        public String Format(Decimal value, Boolean calculate, Boolean intercept, CultureInfo culture)
+        {
+            return this.Format(value, this.GetUnit(), this.GetDecimals(), calculate, intercept, this.GetFormatter(culture));
         }
 
         /// <summary>
@@ -506,10 +534,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Boolean calculate, CultureInfo culture)
         {
-            return this.Format(value, unit, this.GetDecimals(), calculate, this.GetFormatter(culture));
+            return this.Format(value, unit, this.GetDecimals(), calculate, this.GetIntercept(), this.GetFormatter(culture));
         }
 
         /// <summary>
@@ -533,10 +561,40 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals, Boolean calculate, CultureInfo culture)
         {
-            return this.Format(value, this.GetUnit(), decimals, calculate, this.GetFormatter(culture));
+            return this.Format(value, this.GetUnit(), decimals, calculate, this.GetIntercept(), this.GetFormatter(culture));
+        }
+
+        /// <summary>
+        /// Formats provided value according to current settings.
+        /// </summary>
+        /// <remarks>
+        /// This method formats provided value according to current settings.
+        /// </remarks>
+        /// <param name="value">
+        /// The value to be formatted.
+        /// </param>
+        /// <param name="decimals">
+        /// The number of decimal digits to be used for calculation.
+        /// </param>
+        /// <param name="calculate">
+        /// True to force a result calculation, otherwise false.
+        /// </param>
+        /// <param name="intercept">
+        /// True to force intercept mode, otherwise false.
+        /// </param>
+        /// <param name="culture">
+        /// The culture to be used for calculation.
+        /// </param>
+        /// <returns>
+        /// The string representation of formatted value.
+        /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
+        public String Format(Decimal value, Int32 decimals, Boolean calculate, Boolean intercept, CultureInfo culture)
+        {
+            return this.Format(value, this.GetUnit(), decimals, calculate, intercept, this.GetFormatter(culture));
         }
 
         /// <summary>
@@ -563,10 +621,43 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Int32 decimals, Boolean calculate, CultureInfo culture)
         {
-            return this.Format(value, unit, decimals, calculate, this.GetFormatter(culture));
+            return this.Format(value, unit, decimals, calculate, this.GetIntercept(), this.GetFormatter(culture));
+        }
+
+        /// <summary>
+        /// Formats provided value according to current settings.
+        /// </summary>
+        /// <remarks>
+        /// This method formats provided value according to current settings.
+        /// </remarks>
+        /// <param name="value">
+        /// The value to be formatted.
+        /// </param>
+        /// <param name="unit">
+        /// The unit to be appended.
+        /// </param>
+        /// <param name="decimals">
+        /// The number of decimal digits to be used for calculation.
+        /// </param>
+        /// <param name="calculate">
+        /// True to force a result calculation, otherwise false.
+        /// </param>
+        /// <param name="intercept">
+        /// True to force intercept mode, otherwise false.
+        /// </param>
+        /// <param name="culture">
+        /// The culture to be used for calculation.
+        /// </param>
+        /// <returns>
+        /// The string representation of formatted value.
+        /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
+        public String Format(Decimal value, String unit, Int32 decimals, Boolean calculate, Boolean intercept, CultureInfo culture)
+        {
+            return this.Format(value, unit, decimals, calculate, intercept, this.GetFormatter(culture));
         }
 
         /// <summary>
@@ -584,10 +675,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, NumberFormatInfo formatter)
         {
-            return this.Format(value, this.GetUnit(), this.GetDecimals(), this.GetCalculate(), formatter);
+            return this.Format(value, this.GetUnit(), this.GetDecimals(), this.GetCalculate(), this.GetIntercept(), formatter);
         }
 
         /// <summary>
@@ -608,10 +699,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, NumberFormatInfo formatter)
         {
-            return this.Format(value, unit, this.GetDecimals(), this.GetCalculate(), formatter);
+            return this.Format(value, unit, this.GetDecimals(), this.GetCalculate(), this.GetIntercept(), formatter);
         }
 
         /// <summary>
@@ -632,10 +723,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals, NumberFormatInfo formatter)
         {
-            return this.Format(value, this.GetUnit(), decimals, this.GetCalculate(), formatter);
+            return this.Format(value, this.GetUnit(), decimals, this.GetCalculate(), this.GetIntercept(), formatter);
         }
 
         /// <summary>
@@ -659,10 +750,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Int32 decimals, NumberFormatInfo formatter)
         {
-            return this.Format(value, unit, decimals, this.GetCalculate(), formatter);
+            return this.Format(value, unit, decimals, this.GetCalculate(), this.GetIntercept(), formatter);
         }
 
         /// <summary>
@@ -683,10 +774,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Boolean calculate, NumberFormatInfo formatter)
         {
-            return this.Format(value, this.GetUnit(), this.GetDecimals(), calculate, formatter);
+            return this.Format(value, this.GetUnit(), this.GetDecimals(), calculate, this.GetIntercept(), formatter);
         }
 
         /// <summary>
@@ -710,10 +801,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, String unit, Boolean calculate, NumberFormatInfo formatter)
         {
-            return this.Format(value, unit, this.GetDecimals(), calculate, formatter);
+            return this.Format(value, unit, this.GetDecimals(), calculate, this.GetIntercept(), formatter);
         }
 
         /// <summary>
@@ -737,10 +828,40 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        /// <seealso cref="Format(Decimal, String, Int32, Boolean, NumberFormatInfo)"/>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
         public String Format(Decimal value, Int32 decimals, Boolean calculate, NumberFormatInfo formatter)
         {
-            return this.Format(value, this.GetUnit(), decimals, calculate, formatter);
+            return this.Format(value, this.GetUnit(), decimals, calculate, this.GetIntercept(), formatter);
+        }
+
+        /// <summary>
+        /// Formats provided value according to current settings.
+        /// </summary>
+        /// <remarks>
+        /// This method formats provided value according to current settings.
+        /// </remarks>
+        /// <param name="value">
+        /// The value to be formatted.
+        /// </param>
+        /// <param name="unit">
+        /// The unit to be appended.
+        /// </param>
+        /// <param name="decimals">
+        /// The number of decimal digits to be used for calculation.
+        /// </param>
+        /// <param name="calculate">
+        /// True to force a result calculation, otherwise false.
+        /// </param>
+        /// <param name="formatter">
+        /// The number formatter to be used for result formatting.
+        /// </param>
+        /// <returns>
+        /// The string representation of formatted value.
+        /// </returns>
+        /// <seealso cref="Format(Decimal, String, Int32, Boolean, Boolean, NumberFormatInfo)"/>
+        public String Format(Decimal value, String unit, Int32 decimals, Boolean calculate, NumberFormatInfo formatter)
+        {
+            return this.Format(value, unit, decimals, calculate, this.GetIntercept(), formatter);
         }
 
         /// <summary>
@@ -748,7 +869,7 @@ namespace Plexdata.Converters.Entities
         /// </summary>
         /// <remarks>
         /// This method formats provided value according to current settings. Keep in 
-        /// mind, resulting number and unit are concatenated by the 'NO-BREAK SPACE' 
+        /// mind, resulting number and unit are concatenated by a 'NO-BREAK SPACE' 
         /// Unicode character (U+00A0).
         /// </remarks>
         /// <param name="value">
@@ -763,17 +884,20 @@ namespace Plexdata.Converters.Entities
         /// <param name="calculate">
         /// True to force a result calculation, otherwise false.
         /// </param>
+        /// <param name="intercept">
+        /// True to force intercept mode, otherwise false.
+        /// </param>
         /// <param name="formatter">
         /// The number formatter to be used for result formatting.
         /// </param>
         /// <returns>
         /// The string representation of formatted value.
         /// </returns>
-        public String Format(Decimal value, String unit, Int32 decimals, Boolean calculate, NumberFormatInfo formatter)
+        public String Format(Decimal value, String unit, Int32 decimals, Boolean calculate, Boolean intercept, NumberFormatInfo formatter)
         {
             if (formatter == null)
             {
-                throw new ArgumentNullException(nameof(formatter));
+                formatter = this.GetCulture().NumberFormat;
             }
 
             if (this.Value == Decimal.One)
@@ -785,7 +909,9 @@ namespace Plexdata.Converters.Entities
 
             value = calculate ? this.Calculate(value, decimals) : value;
 
-            // Concatenate number and unit by the 'NO-BREAK SPACE' Unicode character.
+            this.AdjustDecimalDigits(formatter, value, decimals, intercept);
+
+            // Concatenate number and unit by a 'NO-BREAK SPACE' Unicode character.
             String format = $"{{0:N}}\u00A0{this.GetUnit(unit)}";
 
             return String.Format(formatter, format, value);
@@ -876,9 +1002,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The default number of decimal digits.
         /// </returns>
+        /// <seealso cref="Defaults.Decimals"/>
         private Int32 GetDecimals()
         {
-            return 0;
+            return Defaults.Decimals;
         }
 
         /// <summary>
@@ -890,9 +1017,25 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The default calculation behaviour.
         /// </returns>
+        /// <seealso cref="Defaults.Calculate"/>
         private Boolean GetCalculate()
         {
-            return true;
+            return Defaults.Calculate;
+        }
+
+        /// <summary>
+        /// Returns the default intercept behaviour.
+        /// </summary>
+        /// <remarks>
+        /// This method returns the default intercept behaviour, which is false.
+        /// </remarks>
+        /// <returns>
+        /// The default intercept behaviour.
+        /// </returns>
+        /// <seealso cref="Defaults.Intercept"/>
+        private Boolean GetIntercept()
+        {
+            return Defaults.Intercept;
         }
 
         /// <summary>
@@ -904,9 +1047,10 @@ namespace Plexdata.Converters.Entities
         /// <returns>
         /// The default culture.
         /// </returns>
+        /// <seealso cref="Defaults.Culture"/>
         private CultureInfo GetCulture()
         {
-            return CultureInfo.CurrentUICulture;
+            return Defaults.Culture;
         }
 
         /// <summary>
@@ -998,17 +1142,40 @@ namespace Plexdata.Converters.Entities
             const Int32 min = 0;
             const Int32 max = 99;
 
-            if (formatter == null)
-            {
-                formatter = this.GetCulture().NumberFormat;
-            }
-
             NumberFormatInfo result = formatter.Clone() as NumberFormatInfo;
 
             // NumberFormatInfo.NumberDecimalDigits requires decimals in range of [0..99].
             result.NumberDecimalDigits = (decimals < min) ? min : ((decimals > max) ? max : decimals);
 
             return result;
+        }
+
+        /// <summary>
+        /// Adjusts the number of decimal digits.
+        /// </summary>
+        /// <remarks>
+        /// This method adjusts the number of decimal digits according to provided 
+        /// parameters.
+        /// </remarks>
+        /// <param name="formatter">
+        /// The formatter to be adjusted.
+        /// </param>
+        /// <param name="value">
+        /// The affected value.
+        /// </param>
+        /// <param name="decimals">
+        /// The proposed number of decimal digits.
+        /// </param>
+        /// <param name="intercept">
+        /// True to force an adjustment of number of decimal digits, otherwise false.
+        /// </param>
+        private void AdjustDecimalDigits(NumberFormatInfo formatter, Decimal value, Int32 decimals, Boolean intercept)
+        {
+            if (intercept)
+            {
+                intercept = (value - Math.Floor(value)) == Decimal.Zero;
+                formatter.NumberDecimalDigits = intercept ? 0 : decimals;
+            }
         }
 
         #endregion

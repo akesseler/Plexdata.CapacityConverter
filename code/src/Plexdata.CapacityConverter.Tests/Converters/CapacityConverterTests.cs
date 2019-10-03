@@ -194,5 +194,109 @@ namespace Plexdata.CapacityConverter.Tests.Converters
         {
             Assert.That(Examinee.Convert(Convert.ToDecimal(value), unit, decimals), Is.EqualTo(expected));
         }
+
+        [Test]
+        [TestCase("10000000000000000000000000", 3, "8.272\u00A0YB")]
+        [TestCase("10000000000000000000000", 3, "8.470\u00A0ZB")]
+        [TestCase("10000000000000000000", 3, "8.674\u00A0EB")]
+        [TestCase("10000000000000000", 3, "8.882\u00A0PB")]
+        [TestCase("10000000000000", 3, "9.095\u00A0TB")]
+        [TestCase("10000000000", 3, "9.313\u00A0GB")]
+        [TestCase("10000000", 3, "9.537\u00A0MB")]
+        [TestCase("10000", 3, "9.766\u00A0KB")]
+        [TestCase("100", 3, "100\u00A0Bytes")]
+        [TestCase("0", 3, "0\u00A0Bytes")]
+        public void Convert_NoUnitWithDecimals_ResultAsExpected(String value, Int32 decimals, String expected)
+        {
+            Assert.That(Examinee.Convert(Convert.ToDecimal(value), null, decimals), Is.EqualTo(expected));
+        }
+
+        [Test]
+        [TestCase("10000000000000000000000000", "8\u00A0YB")]
+        [TestCase("10000000000000000000000", "8\u00A0ZB")]
+        [TestCase("10000000000000000000", "9\u00A0EB")]
+        [TestCase("10000000000000000", "9\u00A0PB")]
+        [TestCase("10000000000000", "9\u00A0TB")]
+        [TestCase("10000000000", "9\u00A0GB")]
+        [TestCase("10000000", "10\u00A0MB")]
+        [TestCase("10000", "10\u00A0KB")]
+        [TestCase("100", "100\u00A0Bytes")]
+        [TestCase("0", "0\u00A0Bytes")]
+        public void Convert_NoUnitNoDecimals_ResultAsExpected(String value, String expected)
+        {
+            Assert.That(Examinee.Convert(Convert.ToDecimal(value), null, 0), Is.EqualTo(expected));
+        }
+
+        [Test]
+        [TestCase("10000000000000000000000000", "one", "8\u00A0YB")]
+        [TestCase("10000000000000000000000000", "One", "8\u00A0YB")]
+        [TestCase("10000000000000000000000000", "ONE", "8\u00A0YB")]
+        [TestCase("10000000000000000000000", "one", "8\u00A0ZB")]
+        [TestCase("10000000000000000000000", "One", "8\u00A0ZB")]
+        [TestCase("10000000000000000000000", "ONE", "8\u00A0ZB")]
+        [TestCase("10000000000000000000", "one", "9\u00A0EB")]
+        [TestCase("10000000000000000000", "One", "9\u00A0EB")]
+        [TestCase("10000000000000000000", "ONE", "9\u00A0EB")]
+        [TestCase("10000000000000000", "one", "9\u00A0PB")]
+        [TestCase("10000000000000000", "One", "9\u00A0PB")]
+        [TestCase("10000000000000000", "ONE", "9\u00A0PB")]
+        [TestCase("10000000000000", "one", "9\u00A0TB")]
+        [TestCase("10000000000000", "One", "9\u00A0TB")]
+        [TestCase("10000000000000", "ONE", "9\u00A0TB")]
+        [TestCase("10000000000", "one", "9\u00A0GB")]
+        [TestCase("10000000000", "One", "9\u00A0GB")]
+        [TestCase("10000000000", "ONE", "9\u00A0GB")]
+        [TestCase("10000000", "one", "10\u00A0MB")]
+        [TestCase("10000000", "One", "10\u00A0MB")]
+        [TestCase("10000000", "ONE", "10\u00A0MB")]
+        [TestCase("10000", "one", "10\u00A0KB")]
+        [TestCase("10000", "One", "10\u00A0KB")]
+        [TestCase("10000", "ONE", "10\u00A0KB")]
+        [TestCase("100", "one", "100\u00A0Bytes")]
+        [TestCase("100", "One", "100\u00A0Bytes")]
+        [TestCase("100", "ONE", "100\u00A0Bytes")]
+        [TestCase("0", "one", "0\u00A0Bytes")]
+        [TestCase("0", "One", "0\u00A0Bytes")]
+        [TestCase("0", "ONE", "0\u00A0Bytes")]
+        public void Convert_UnitOneNoDecimals_ResultAsExpected(String value, String unit, String expected)
+        {
+            Assert.That(Examinee.Convert(Convert.ToDecimal(value), unit, 0), Is.EqualTo(expected));
+        }
+
+        [Test]
+        [TestCase("10000000000000000000000000", "two", "8\u00A0YiB")]
+        [TestCase("10000000000000000000000000", "Two", "8\u00A0YiB")]
+        [TestCase("10000000000000000000000000", "TWO", "8\u00A0YiB")]
+        [TestCase("10000000000000000000000", "two", "8\u00A0ZiB")]
+        [TestCase("10000000000000000000000", "Two", "8\u00A0ZiB")]
+        [TestCase("10000000000000000000000", "TWO", "8\u00A0ZiB")]
+        [TestCase("10000000000000000000", "two", "9\u00A0EiB")]
+        [TestCase("10000000000000000000", "Two", "9\u00A0EiB")]
+        [TestCase("10000000000000000000", "TWO", "9\u00A0EiB")]
+        [TestCase("10000000000000000", "two", "9\u00A0PiB")]
+        [TestCase("10000000000000000", "Two", "9\u00A0PiB")]
+        [TestCase("10000000000000000", "TWO", "9\u00A0PiB")]
+        [TestCase("10000000000000", "two", "9\u00A0TiB")]
+        [TestCase("10000000000000", "Two", "9\u00A0TiB")]
+        [TestCase("10000000000000", "TWO", "9\u00A0TiB")]
+        [TestCase("10000000000", "two", "9\u00A0GiB")]
+        [TestCase("10000000000", "Two", "9\u00A0GiB")]
+        [TestCase("10000000000", "TWO", "9\u00A0GiB")]
+        [TestCase("10000000", "two", "10\u00A0MiB")]
+        [TestCase("10000000", "Two", "10\u00A0MiB")]
+        [TestCase("10000000", "TWO", "10\u00A0MiB")]
+        [TestCase("10000", "two", "10\u00A0KiB")]
+        [TestCase("10000", "Two", "10\u00A0KiB")]
+        [TestCase("10000", "TWO", "10\u00A0KiB")]
+        [TestCase("100", "two", "100\u00A0BiB")]
+        [TestCase("100", "Two", "100\u00A0BiB")]
+        [TestCase("100", "TWO", "100\u00A0BiB")]
+        [TestCase("0", "two", "0\u00A0BiB")]
+        [TestCase("0", "Two", "0\u00A0BiB")]
+        [TestCase("0", "TWO", "0\u00A0BiB")]
+        public void Convert_UnitTwoNoDecimals_ResultAsExpected(String value, String unit, String expected)
+        {
+            Assert.That(Examinee.Convert(Convert.ToDecimal(value), unit, 0), Is.EqualTo(expected));
+        }
     }
 }
