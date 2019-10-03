@@ -70,6 +70,7 @@ tbody tr:nth-child(odd){
   <a href="#overview">Overview</a>
   <a href="#licensing">Licensing</a>
   <a href="#installation">Installation</a>
+  <a href="#formatting">Formatting</a>
   <a href="#examples">Examples</a>
   <a href="#limitation">Limitation</a>
 </div>
@@ -150,6 +151,64 @@ Confirm the dialog box and that&rsquo;s it.
 Additionally, all releases can be downloaded from <i>GitHub</i>. Please visit page 
 <a target="_blank" href="https://github.com/akesseler/Plexdata.CapacityConverter/releases">Plexdata Capacity Converter</a> 
 to find all available versions.
+</p>
+
+<h2 id="formatting">Formatting</h2>
+    
+<p>
+Table below shows all possible format operators as well as their meaning.
+</p>
+
+<table>
+<tr><th>Operator</th><th>Description</th></tr>
+<tr><td><b>!</b></td><td>Switches off the <i>calculate</i> mode. With disabled calculation any value is taken as it is.</td></tr>
+<tr><td><b>~</b></td><td>Switches on the <i>intercept</i> mode. Intercept mode suppresses all decimal digits if they consist of zeros only.</td></tr>
+<tr><td><b>One</b></td><td>Finds best fitting calculation and appends unit <i>one</i>. Unit <i>one</i> represents the short unit (e.g. MB).</td></tr>
+<tr><td><b>Two</b></td><td>Finds best fitting calculation and appends unit <i>two</i>. Unit <i>two</i> represents the long unit (e.g. MiB).</td></tr>
+<tr><td><b>Bytes</b></td><td>Uses <i>Bibibyte</i> calculation and appends unit <code>Bytes</code> (unit <i>one</i>).</td></tr>
+<tr><td><b>BiB</b></td><td>Uses <i>Bibibyte</i> calculation but appends unit <code>BiB</code> (unit <i>two</i>).</td></tr>
+<tr><td><b>KB</b></td><td>Uses <i>Kibibyte</i> calculation and appends unit <code>KB</code> (unit <i>one</i>).</td></tr>
+<tr><td><b>KiB</b></td><td>Uses <i>Kibibyte</i> calculation but appends unit <code>KiB</code> (unit <i>two</i>).</td></tr>
+<tr><td><b>MB</b></td><td>Uses <i>Mebibyte</i> calculation and appends unit <code>MB</code> (unit <i>one</i>).</td></tr>
+<tr><td><b>MiB</b></td><td>Uses <i>Mebibyte</i> calculation but appends unit <code>MiB</code> (unit <i>two</i>).</td></tr>
+<tr><td><b>GB</b></td><td>Uses <i>Gibibyte</i> calculation and appends unit <code>GB</code> (unit <i>one</i>).</td></tr>
+<tr><td><b>GiB</b></td><td>Uses <i>Gibibyte</i> calculation but appends unit <code>GiB</code> (unit <i>two</i>).</td></tr>
+<tr><td><b>TB</b></td><td>Uses <i>Tebibyte</i> calculation and appends unit <code>TB</code> (unit <i>one</i>).</td></tr>
+<tr><td><b>TiB</b></td><td>Uses <i>Tebibyte</i> calculation but appends unit <code>TiB</code> (unit <i>two</i>).</td></tr>
+<tr><td><b>PB</b></td><td>Uses <i>Pebibyte</i> calculation and appends unit <code>PB</code> (unit <i>one</i>).</td></tr>
+<tr><td><b>PiB</b></td><td>Uses <i>Pebibyte</i> calculation but appends unit <code>PiB</code> (unit <i>two</i>).</td></tr>
+<tr><td><b>EB</b></td><td>Uses <i>Exbibyte</i> calculation and appends unit <code>EB</code> (unit <<i>one</i>).</td></tr>
+<tr><td><b>EiB</b></td><td>Uses <i>Exbibyte</i> calculation but appends unit <code>EiB</code> (unit <i>two</i>).</td></tr>
+<tr><td><b>ZB</b></td><td>Uses <i>Zebibyte</i> calculation and appends unit <code>ZB</code> (unit <i>one</i>).</td></tr>
+<tr><td><b>ZiB</b></td><td>Uses <i>Zebibyte</i> calculation but appends unit <code>ZiB</code> (unit <i>two</i>).</td></tr>
+<tr><td><b>YB</b></td><td>Uses <i>Yobibyte</i> calculation and appends unit <code>YB</code> (unit <i>one</i>).</td></tr>
+<tr><td><b>YiB</b></td><td>Uses <i>Yobibyte</i> calculation but appends unit <code>YiB</code> (unit <i>two</i>).</td></tr>
+</table>
+
+<p>
+<b>Recommendation</b>: With disabled <i>calculate</i> mode you should use <i>intercept</i> mode switched on.
+</p>
+
+<p>
+<b>Recommendation</b>: Class <code>CapacityConverter</code> respectively class <code>CapacityEntity</code> should not be used 
+directly. Better is a usage of class <code>CapacityFormatter</code> in combination with for example <code>String.Format()</code> 
+as shown in all examples below.
+</p>
+
+<p>
+<b>Hint</b>: A used format string can consist of upper or lower cases, because the <i>Capacity Formatter</i> does not take care 
+about it. This means in detail that format strings like <code>{0:one5}</code> or <code>{0:One5}</code> or <code>{0:ONE5}</code> 
+would generate the same result.
+</p>
+
+<p>
+<b>Hint</b>: The <i>Capacity Formatter</i> does not take care about letter and digit combinations. This means that for example 
+a format string like <code>{0:1m2b}</code> would end up in unit <code>MB</code>. The same applies to the number of decimal digits, 
+because something like <code>{0:1m2b}</code> would generate <code>12</code> decimal digits.
+</p>
+
+<p>
+<b>Attention</b>: Each calculation always takes a multiple of 1024, no matter which unit (short or long) is used.
 </p>
 
 <h2 id="examples">Examples</h2>
@@ -277,6 +336,14 @@ String.Format(new CapacityFormatter(), "{0:two6}", 1234567890123456); // result:
 String.Format(new CapacityFormatter(), "{0:two6}", 12345678901234567); // result: "10.965166 PiB"
 String.Format(new CapacityFormatter(), "{0:two6}", 123456789012345678); // result: "109.651656 PiB"</code></pre>
 
+
+<h3>Auto-format, unit one preferred, four decimal digits, mixed interception</h3>
+
+<pre><code>String.Format(new CapacityFormatter(), "{0:one4}", 1073741824m)); // result: "1.0000 GB"
+String.Format(new CapacityFormatter(), "{0:one~4}", 1073741824m)); // result: "1 GB"
+String.Format(new CapacityFormatter(), "{0:one4}", 2213102268m)); // result: "2.0611 GB"
+String.Format(new CapacityFormatter(), "{0:one~4}", 2213102268m)); // result: "2.0611 GB"</code></pre>
+
 <h3>Unit-one-driven format, zero decimal digits</h3>
 
 <pre><code>String.Format(new CapacityFormatter(), "{0:bytes}", 123456789012345678); // result: "123,456,789,012,345,678 Bytes"
@@ -320,6 +387,33 @@ String.Format(new CapacityFormatter(), "{0:pib4}", 123456789012345678); // resul
 <h3>Custom-unit-format, six decimal digits</h3>
 
 <pre><code>String.Format(new CapacityFormatter(), "{0:my-size6}", 123456789012345678); // result: "123,456,789,012,345,678 my-size"</code></pre>
+
+<h3>Unit-two-driven format, four decimal digits, but no calculation</h3>
+
+<pre><code>String.Format(new CapacityFormatter(), "{0:!bib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 BiB"
+String.Format(new CapacityFormatter(), "{0:!kib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 KiB"
+String.Format(new CapacityFormatter(), "{0:!mib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 MiB"
+String.Format(new CapacityFormatter(), "{0:!gib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 GiB"
+String.Format(new CapacityFormatter(), "{0:!tib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 TiB"
+String.Format(new CapacityFormatter(), "{0:!pib4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976.0000 PiB"</code></pre>
+
+<h3>Unit-two-driven format, four decimal digits, but interception</h3>
+
+<pre><code>String.Format(new CapacityFormatter(), "{0:bib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 BiB"
+String.Format(new CapacityFormatter(), "{0:kib~4}", 1152921504606846976m); // result: "1,125,899,906,842,624 KiB"
+String.Format(new CapacityFormatter(), "{0:mib~4}", 1152921504606846976m); // result: "1,099,511,627,776 MiB"
+String.Format(new CapacityFormatter(), "{0:gib~4}", 1152921504606846976m); // result: "1,073,741,824 GiB"
+String.Format(new CapacityFormatter(), "{0:tib~4}", 1152921504606846976m); // result: "1,048,576 TiB"
+String.Format(new CapacityFormatter(), "{0:pib~4}", 1152921504606846976m); // result: "1,024 PiB"</code></pre>
+
+<h3>Unit-two-driven format, four decimal digits, with interception, but no calculation</h3>
+
+<pre><code>String.Format(new CapacityFormatter(), "{0:!bib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 BiB"
+String.Format(new CapacityFormatter(), "{0:!kib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 KiB"
+String.Format(new CapacityFormatter(), "{0:!mib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 MiB"
+String.Format(new CapacityFormatter(), "{0:!gib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 GiB"
+String.Format(new CapacityFormatter(), "{0:!tib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 TiB"
+String.Format(new CapacityFormatter(), "{0:!pib~4}", 1152921504606846976m); // result: "1,152,921,504,606,846,976 PiB"</code></pre>
 
 <h2 id="limitation">Limitation</h2>
 
